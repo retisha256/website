@@ -299,7 +299,7 @@
     <div class="max-w-4xl mx-auto px-6 text-center">
       <h3 class="text-3xl font-bold text-[#d4af37] mb-12">Get In Touch</h3>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 place-items-center max-w-5xl mx-auto">
         <!-- Email -->
         <a href="mailto:retishanakiyemba202@gmail.com"
           class="group p-6 bg-[#112240] rounded-xl hover:bg-[#1d3359] transition-all duration-300 transform hover:-translate-y-2">
@@ -314,22 +314,7 @@
           <p class="text-xs text-gray-400 group-hover:text-gray-300 break-words">retishanakiyemba202@gmail.com</p>
         </a>
 
-        <!-- Phone -->
-        <div
-          class="group p-6 bg-[#112240] rounded-xl hover:bg-[#1d3359] transition-all duration-300 transform hover:-translate-y-2">
-          <div class="text-[#d4af37] text-3xl mb-4 flex justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
-          </div>
-          <h4 class="font-bold text-lg mb-2">Phone</h4>
-          <p class="text-xs text-gray-400 group-hover:text-gray-300">
-            <a href="tel:+256701066872" class="hover:text-[#d4af37]">+256 701 066 872</a><br>
-            <a href="tel:+256748864949" class="hover:text-[#d4af37]">0748 864 949</a>
-          </p>
-        </div>
+        
 
         <!-- LinkedIn -->
         <a href="https://www.linkedin.com/in/retisha-nakiyemba-50b9462a3/" target="_blank"
@@ -354,7 +339,17 @@
             </svg>
           </div>
           <h4 class="font-bold text-lg mb-2">GitHub</h4>
-          <p class="text-xs text-gray-400 group-hover:text-gray-300">@retisha256</p>
+@retisha256</p>
+        </a>
+      </div>
+
+      <!-- Download CV Button -->
+      <div class="mt-12 flex justify-center">
+        <a href="{% static 'Retisha_Nakiyemba_cv.docx' %}" download="Retisha_Nakiyemba_CV.docx" class="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#d4af37] to-[#e6b800] text-[#0a192f] font-bold rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-1 hover:from-[#d4af37]/90 transition-all duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10l-5.5 5.5h11L12 10z"/>
+          </svg>
+          Download CV
         </a>
       </div>
     </div>
