@@ -114,7 +114,7 @@ STATIC_URL = '/static/'
 
 # During development: where Django will look for additional static files
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # This assumes you will create a project-level 'static' folder.
+    BASE_DIR / 'portfoli' / 'static',  # This points to the app's static folder
 ]
 
 # For production: where `collectstatic` will copy all static files
@@ -140,3 +140,6 @@ INTERNAL_IPS = [
 ]
 
 
+# settings.py
+
+ALLOWED_HOSTS = ['retisha-nakiyemba.onrender.com', 'localhost', '127.0.0.1']
