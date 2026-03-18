@@ -55,3 +55,36 @@ html { scroll-behavior: smooth; }
   color: #e6eef8;
   box-shadow: 0 8px 20px rgba(2,6,23,0.6);
 }
+
+/* Mobile responsive contact section */
+@media (max-width: 768px) {
+  #contact {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  #contact > div {
+    max-width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  #contact > div > div[class*="grid"] {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    gap: 1rem;
+  }
+  #contact a.group {
+    padding: 1.25rem 1rem;
+    min-height: 4rem;
+  }
+  #contact svg.h-10,
+  #contact svg.w-10 {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+  #contact h4 {
+    font-size: 1.125rem;
+  }
+  #contact p {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+}
