@@ -40,18 +40,61 @@ body { overflow-x: hidden; }
 }
 
 /* ═══════════════════════════════════════════
-   HERO TECH TAGS
+   HERO SKILL BOXES (replaces tech-tag pills)
 ═══════════════════════════════════════════ */
-.tech-tag {
-  display: inline-block;
-  padding: 4px 10px;
-  background: rgba(212,175,55,0.08);
-  border: 1px solid rgba(212,175,55,0.18);
+.skill-box-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+@media (max-width: 768px) {
+  .skill-box-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 480px) {
+  .skill-box-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.skill-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+  background: rgba(17, 34, 64, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.2);
   border-radius: 6px;
   font-size: 11px;
   font-weight: 600;
   color: #c9a227;
-  letter-spacing: 0.02em;
+  text-align: center;
+  line-height: 1.3;
+  box-shadow: 0 2px 6px rgba(2, 6, 23, 0.35);
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+  white-space: normal;
+  word-break: break-word;
+}
+.skill-box:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.45);
+  color: #d4af37;
+}
+
+/* Smaller variant used inside project tech stacks */
+.skill-box--sm {
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #8ea8c3;
+  border-color: rgba(100, 130, 180, 0.2);
+  background: rgba(10, 25, 47, 0.8);
+}
+.skill-box--sm:hover {
+  color: #d4af37;
+  border-color: rgba(212, 175, 55, 0.35);
+  background: rgba(17, 34, 64, 0.9);
 }
 
 /* ═══════════════════════════════════════════
@@ -102,20 +145,19 @@ body { overflow-x: hidden; }
   letter-spacing: 0.08em;
   color: #d4af37;
 }
-.skill-pill {
-  display: inline-block;
-  padding: 4px 10px;
-  background: rgba(212,175,55,0.06);
-  border: 1px solid rgba(212,175,55,0.15);
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 500;
-  color: #b8cce4;
-  transition: background 0.2s, color 0.2s;
+/* Inside skill-group-cards, override to 3-col on desktop, 2-col tablet, 2-col mobile */
+.skill-group-card .skill-box-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
-.skill-pill:hover {
-  background: rgba(212,175,55,0.12);
-  color: #d4af37;
+@media (max-width: 768px) {
+  .skill-group-card .skill-box-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 480px) {
+  .skill-group-card .skill-box-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -148,16 +190,7 @@ body { overflow-x: hidden; }
   border: 1px solid;
   letter-spacing: 0.02em;
 }
-.tech-pill {
-  display: inline-block;
-  padding: 3px 9px;
-  background: rgba(10,25,47,0.8);
-  border: 1px solid rgba(100,130,180,0.2);
-  border-radius: 6px;
-  font-size: 10px;
-  font-weight: 500;
-  color: #8ea8c3;
-}
+/* tech-pill removed — replaced by .skill-box.skill-box--sm */
 .project-link-btn {
   display: inline-flex;
   align-items: center;
@@ -173,6 +206,16 @@ body { overflow-x: hidden; }
 .project-link-btn:hover {
   background: rgba(212,175,55,0.1);
   border-color: rgba(212,175,55,0.5);
+}
+/* Live demo button variant */
+.project-link-demo {
+  color: #94a3b8;
+  border-color: rgba(148,163,184,0.25);
+}
+.project-link-demo:hover {
+  background: rgba(148,163,184,0.08);
+  border-color: rgba(148,163,184,0.45);
+  color: #cbd5e1;
 }
 
 /* ═══════════════════════════════════════════
@@ -270,19 +313,4 @@ body { overflow-x: hidden; }
   .about-stat-card { flex-direction: column; text-align: center; }
 }
 
-/* Professional Strengths pills */
-.strength-pill {
-  display: inline-block;
-  padding: 5px 12px;
-  background: rgba(17,34,64,0.7);
-  border: 1px solid rgba(212,175,55,0.15);
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #94a9bf;
-  transition: border-color 0.2s, color 0.2s;
-}
-.strength-pill:hover {
-  border-color: rgba(212,175,55,0.35);
-  color: #d4af37;
-}
+/* Professional Strengths — now uses .skill-box via .skill-box-grid */

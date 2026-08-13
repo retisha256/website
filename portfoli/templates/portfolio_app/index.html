@@ -68,11 +68,6 @@
 
       <!-- Left: intro -->
       <div class="space-y-6">
-        <div class="inline-flex items-center gap-2 text-xs font-medium text-[#d4af37] bg-[#d4af37]/10 border border-[#d4af37]/20 rounded-full px-4 py-1.5 mb-2">
-          <span class="w-2 h-2 bg-[#d4af37] rounded-full animate-pulse"></span>
-          Available for opportunities
-        </div>
-
         <h1 class="font-bold text-white leading-tight" style="font-size:var(--hero-font-size,3rem);">
           Retisha <span class="text-[#d4af37]">Nakiyemba</span>
         </h1>
@@ -85,16 +80,16 @@
           Building practical, user-focused digital solutions — across full-stack web apps, RESTful APIs, databases, and AI-powered systems using Python, Django, JavaScript, React, Next.js, and Node.js.
         </p>
 
-        <!-- Tech tags -->
-        <div class="flex flex-wrap gap-2 pt-1">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">Django</span>
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">TypeScript</span>
-          <span class="tech-tag">React</span>
-          <span class="tech-tag">Next.js</span>
-          <span class="tech-tag">Node.js</span>
-          <span class="tech-tag">APIs</span>
+        <!-- Hero skill boxes -->
+        <div class="skill-box-grid pt-1">
+          <span class="skill-box">Python</span>
+          <span class="skill-box">Django</span>
+          <span class="skill-box">JavaScript</span>
+          <span class="skill-box">TypeScript</span>
+          <span class="skill-box">React</span>
+          <span class="skill-box">Next.js</span>
+          <span class="skill-box">Node.js</span>
+          <span class="skill-box">APIs</span>
         </div>
 
         <!-- CTAs -->
@@ -103,7 +98,7 @@
             View My Work
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
-          <a href="{% static 'Retisha_Nakiyemba_Resume1.pdf' %}" download="Retisha_Nakiyemba_CV.pdf" class="inline-flex items-center gap-2 px-6 py-3 border border-[#d4af37]/40 text-[#d4af37] rounded-lg font-semibold text-sm hover:bg-[#d4af37]/10 transition-all duration-200">
+          <a href="{% static 'Retisha_Nakiyemba_Updated_Resume.pdf' %}" download="Retisha_Nakiyemba_Updated_Resume.pdf" class="inline-flex items-center gap-2 px-6 py-3 border border-[#d4af37]/40 text-[#d4af37] rounded-lg font-semibold text-sm hover:bg-[#d4af37]/10 transition-all duration-200">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
             Download CV
           </a>
@@ -186,13 +181,13 @@
       <!-- Professional Strengths -->
       <div class="mt-10 pt-8 border-t border-[#d4af37]/10">
         <p class="text-xs font-semibold text-[#d4af37] tracking-widest uppercase mb-4">Professional Strengths</p>
-        <div class="flex flex-wrap gap-2">
-          <span class="strength-pill">Problem Solving</span>
-          <span class="strength-pill">Team Collaboration</span>
-          <span class="strength-pill">Communication</span>
-          <span class="strength-pill">Adaptability</span>
-          <span class="strength-pill">Continuous Learning</span>
-          <span class="strength-pill">User-Centered Thinking</span>
+        <div class="skill-box-grid">
+          <span class="skill-box">Problem Solving</span>
+          <span class="skill-box">Team Collaboration</span>
+          <span class="skill-box">Communication</span>
+          <span class="skill-box">Adaptability</span>
+          <span class="skill-box">Continuous Learning</span>
+          <span class="skill-box">User-Centered Thinking</span>
         </div>
       </div>
     </div>
@@ -253,75 +248,75 @@
         <!-- Languages -->
         <div class="skill-group-card">
           <h4 class="skill-group-title">Programming Languages</h4>
-          <div class="flex flex-wrap gap-2 mt-3">
-            <span class="skill-pill">Python</span>
-            <span class="skill-pill">JavaScript</span>
-            <span class="skill-pill">TypeScript</span>
-            <span class="skill-pill">HTML</span>
-            <span class="skill-pill">CSS</span>
+          <div class="skill-box-grid mt-3">
+            <span class="skill-box">Python</span>
+            <span class="skill-box">JavaScript</span>
+            <span class="skill-box">TypeScript</span>
+            <span class="skill-box">HTML</span>
+            <span class="skill-box">CSS</span>
           </div>
         </div>
 
         <!-- Frontend -->
         <div class="skill-group-card">
           <h4 class="skill-group-title">Frontend</h4>
-          <div class="flex flex-wrap gap-2 mt-3">
-            <span class="skill-pill">React</span>
-            <span class="skill-pill">Next.js</span>
-            <span class="skill-pill">React 19</span>
-            <span class="skill-pill">Tailwind CSS</span>
-            <span class="skill-pill">Responsive Design</span>
+          <div class="skill-box-grid mt-3">
+            <span class="skill-box">React</span>
+            <span class="skill-box">Next.js</span>
+            <span class="skill-box">React 19</span>
+            <span class="skill-box">Tailwind CSS</span>
+            <span class="skill-box">Responsive Design</span>
           </div>
         </div>
 
         <!-- Backend -->
         <div class="skill-group-card">
           <h4 class="skill-group-title">Backend</h4>
-          <div class="flex flex-wrap gap-2 mt-3">
-            <span class="skill-pill">Django</span>
-            <span class="skill-pill">Django REST Framework</span>
-            <span class="skill-pill">Node.js</span>
-            <span class="skill-pill">Express.js</span>
-            <span class="skill-pill">RESTful APIs</span>
+          <div class="skill-box-grid mt-3">
+            <span class="skill-box">Django</span>
+            <span class="skill-box">Django REST Framework</span>
+            <span class="skill-box">Node.js</span>
+            <span class="skill-box">Express.js</span>
+            <span class="skill-box">RESTful APIs</span>
           </div>
         </div>
 
         <!-- Databases -->
         <div class="skill-group-card">
           <h4 class="skill-group-title">Databases &amp; Backend Services</h4>
-          <div class="flex flex-wrap gap-2 mt-3">
-            <span class="skill-pill">PostgreSQL</span>
-            <span class="skill-pill">Supabase</span>
-            <span class="skill-pill">SQLite</span>
-            <span class="skill-pill">MongoDB</span>
-            <span class="skill-pill">Mongoose</span>
+          <div class="skill-box-grid mt-3">
+            <span class="skill-box">PostgreSQL</span>
+            <span class="skill-box">Supabase</span>
+            <span class="skill-box">SQLite</span>
+            <span class="skill-box">MongoDB</span>
+            <span class="skill-box">Mongoose</span>
           </div>
         </div>
 
         <!-- Security & Integration -->
         <div class="skill-group-card">
           <h4 class="skill-group-title">Security &amp; Integration</h4>
-          <div class="flex flex-wrap gap-2 mt-3">
-            <span class="skill-pill">Authentication</span>
-            <span class="skill-pill">Role-Based Access Control</span>
-            <span class="skill-pill">Secure API Routes</span>
-            <span class="skill-pill">Mobile Money APIs</span>
-            <span class="skill-pill">Payment Processing</span>
+          <div class="skill-box-grid mt-3">
+            <span class="skill-box">Authentication</span>
+            <span class="skill-box">Role-Based Access Control</span>
+            <span class="skill-box">Secure API Routes</span>
+            <span class="skill-box">Mobile Money APIs</span>
+            <span class="skill-box">Payment Processing</span>
           </div>
         </div>
 
         <!-- Tools -->
         <div class="skill-group-card">
           <h4 class="skill-group-title">Tools &amp; Development</h4>
-          <div class="flex flex-wrap gap-2 mt-3">
-            <span class="skill-pill">Git</span>
-            <span class="skill-pill">GitHub</span>
-            <span class="skill-pill">Figma</span>
-            <span class="skill-pill">Trello</span>
-            <span class="skill-pill">Agile</span>
-            <span class="skill-pill">Prompt Engineering</span>
-            <span class="skill-pill">UI/UX Design</span>
-            <span class="skill-pill">OOP</span>
+          <div class="skill-box-grid mt-3">
+            <span class="skill-box">Git</span>
+            <span class="skill-box">GitHub</span>
+            <span class="skill-box">Figma</span>
+            <span class="skill-box">Trello</span>
+            <span class="skill-box">Agile</span>
+            <span class="skill-box">Prompt Engineering</span>
+            <span class="skill-box">UI/UX Design</span>
+            <span class="skill-box">OOP</span>
           </div>
         </div>
 
@@ -382,15 +377,15 @@
             </div>
 
             <div class="flex flex-wrap gap-2 mb-5">
-              <span class="tech-pill">Django</span>
-              <span class="tech-pill">Python</span>
-              <span class="tech-pill">SQLite</span>
-              <span class="tech-pill">Africa's Talking APIs</span>
-              <span class="tech-pill">USSD</span>
-              <span class="tech-pill">SMS</span>
-              <span class="tech-pill">Voice</span>
-              <span class="tech-pill">Sunflower AI / LLM</span>
-              <span class="tech-pill">ngrok</span>
+              <span class="skill-box skill-box--sm">Django</span>
+              <span class="skill-box skill-box--sm">Python</span>
+              <span class="skill-box skill-box--sm">SQLite</span>
+              <span class="skill-box skill-box--sm">Africa's Talking APIs</span>
+              <span class="skill-box skill-box--sm">USSD</span>
+              <span class="skill-box skill-box--sm">SMS</span>
+              <span class="skill-box skill-box--sm">Voice</span>
+              <span class="skill-box skill-box--sm">Sunflower AI / LLM</span>
+              <span class="skill-box skill-box--sm">ngrok</span>
             </div>
 
             <div class="flex flex-wrap gap-3">
@@ -402,7 +397,7 @@
           </div>
         </article>
 
-        <!-- PROJECT 2: Academic Services Platform -->
+        <!-- PROJECT 2: ScholarCraft -->
         <article class="project-card-full">
           <div class="project-card-header">
             <div class="flex items-start justify-between gap-4 flex-wrap">
@@ -411,8 +406,8 @@
                   <span class="project-badge bg-blue-500/10 text-blue-400 border-blue-500/20">Next.js 15 / TypeScript</span>
                   <span class="project-badge bg-purple-500/10 text-purple-400 border-purple-500/20">Supabase / PostgreSQL</span>
                 </div>
-                <h3 class="text-xl font-bold text-white">Academic Services Platform</h3>
-                <p class="text-[#d4af37] text-sm font-medium mt-0.5">Production-Ready Full-Stack Web Application</p>
+                <h3 class="text-xl font-bold text-white">ScholarCraft</h3>
+                <p class="text-[#d4af37] text-sm font-medium mt-0.5">Academic Services Platform — Production-Ready Full-Stack Web Application</p>
               </div>
               <div class="text-right text-xs text-gray-400">
                 <div>Full-Stack Developer</div>
@@ -443,21 +438,25 @@
             </div>
 
             <div class="flex flex-wrap gap-2 mb-5">
-              <span class="tech-pill">Next.js 15</span>
-              <span class="tech-pill">React 19</span>
-              <span class="tech-pill">TypeScript 5</span>
-              <span class="tech-pill">Supabase</span>
-              <span class="tech-pill">PostgreSQL</span>
-              <span class="tech-pill">Authentication</span>
-              <span class="tech-pill">Supabase Storage</span>
-              <span class="tech-pill">React Hook Form</span>
-              <span class="tech-pill">Zod</span>
+              <span class="skill-box skill-box--sm">Next.js 15</span>
+              <span class="skill-box skill-box--sm">React 19</span>
+              <span class="skill-box skill-box--sm">TypeScript 5</span>
+              <span class="skill-box skill-box--sm">Supabase</span>
+              <span class="skill-box skill-box--sm">PostgreSQL</span>
+              <span class="skill-box skill-box--sm">Authentication</span>
+              <span class="skill-box skill-box--sm">Supabase Storage</span>
+              <span class="skill-box skill-box--sm">React Hook Form</span>
+              <span class="skill-box skill-box--sm">Zod</span>
             </div>
 
             <div class="flex flex-wrap gap-3">
-              <a href="https://github.com/retisha256" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+              <a href="https://github.com/retisha256/ScholarCraft" target="_blank" rel="noopener noreferrer" class="project-link-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.61-4.041-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 GitHub
+              </a>
+              <a href="https://scholar-craft-ccc3.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link-btn project-link-demo">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                Live Demo
               </a>
             </div>
           </div>
@@ -504,20 +503,24 @@
             </div>
 
             <div class="flex flex-wrap gap-2 mb-5">
-              <span class="tech-pill">Node.js</span>
-              <span class="tech-pill">Express.js</span>
-              <span class="tech-pill">JavaScript</span>
-              <span class="tech-pill">MongoDB</span>
-              <span class="tech-pill">REST APIs</span>
-              <span class="tech-pill">MTN Mobile Money</span>
-              <span class="tech-pill">Airtel Money</span>
-              <span class="tech-pill">WhatsApp API</span>
+              <span class="skill-box skill-box--sm">Node.js</span>
+              <span class="skill-box skill-box--sm">Express.js</span>
+              <span class="skill-box skill-box--sm">JavaScript</span>
+              <span class="skill-box skill-box--sm">MongoDB</span>
+              <span class="skill-box skill-box--sm">REST APIs</span>
+              <span class="skill-box skill-box--sm">MTN Mobile Money</span>
+              <span class="skill-box skill-box--sm">Airtel Money</span>
+              <span class="skill-box skill-box--sm">WhatsApp API</span>
             </div>
 
             <div class="flex flex-wrap gap-3">
               <a href="https://github.com/retisha256" target="_blank" rel="noopener noreferrer" class="project-link-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.61-4.041-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 GitHub
+              </a>
+              <a href="https://ecommerce-0oxh.onrender.com/" target="_blank" rel="noopener noreferrer" class="project-link-btn project-link-demo">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                Live Demo
               </a>
             </div>
           </div>
@@ -564,17 +567,21 @@
             </div>
 
             <div class="flex flex-wrap gap-2 mb-5">
-              <span class="tech-pill">Python</span>
-              <span class="tech-pill">Django</span>
-              <span class="tech-pill">SQLite</span>
-              <span class="tech-pill">Django Templating</span>
-              <span class="tech-pill">OOP</span>
+              <span class="skill-box skill-box--sm">Python</span>
+              <span class="skill-box skill-box--sm">Django</span>
+              <span class="skill-box skill-box--sm">SQLite</span>
+              <span class="skill-box skill-box--sm">Django Templating</span>
+              <span class="skill-box skill-box--sm">OOP</span>
             </div>
 
             <div class="flex flex-wrap gap-3">
-              <a href="https://github.com/retisha256/kgl1" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+              <a href="https://github.com/retisha256/kgl" target="_blank" rel="noopener noreferrer" class="project-link-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.61-4.041-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 GitHub
+              </a>
+              <a href="https://kgl-1xpt.onrender.com" target="_blank" rel="noopener noreferrer" class="project-link-btn project-link-demo">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                Live Demo
               </a>
             </div>
           </div>
@@ -748,7 +755,7 @@
         </div>
       </div>
 
-      <a href="{% static 'Retisha_Nakiyemba_Resume1.pdf' %}" download="Retisha_Nakiyemba_CV.pdf"
+      <a href="{% static 'Retisha_Nakiyemba_Updated_Resume.pdf' %}" download="Retisha_Nakiyemba_Updated_Resume.pdf"
         class="inline-flex items-center gap-2 px-8 py-4 bg-[#d4af37] text-[#0a192f] font-bold rounded-xl shadow-lg hover:bg-[#e6c84a] hover:-translate-y-1 transition-all duration-200 text-sm">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
         Download CV
@@ -826,7 +833,7 @@
           </a>
 
           <div class="pt-4">
-            <a href="{% static 'Retisha_Nakiyemba_Resume1.pdf' %}" download="Retisha_Nakiyemba_CV.pdf"
+            <a href="{% static 'Retisha_Nakiyemba_Updated_Resume.pdf' %}" download="Retisha_Nakiyemba_Updated_Resume.pdf"
               class="inline-flex items-center gap-2 px-5 py-2.5 border border-[#d4af37]/40 text-[#d4af37] rounded-lg text-xs font-semibold hover:bg-[#d4af37]/10 transition-all">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
               Download CV
