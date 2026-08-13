@@ -1,7 +1,13 @@
-/* small base */
+/* ═══════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+body { overflow-x: hidden; }
 
-/* 3D photo frame */
+/* ═══════════════════════════════════════════
+   PHOTO 3D FRAME
+═══════════════════════════════════════════ */
 .photo-3d-wrapper {
   perspective: 1200px;
   width: 300px;
@@ -12,9 +18,9 @@ html { scroll-behavior: smooth; }
   border-radius: 18px;
   padding: 6px;
   transform-style: preserve-3d;
-  transition: transform 300ms ease, box-shadow 300ms ease;
+  transition: box-shadow 300ms ease;
   background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(10,25,47,0.6));
-  box-shadow: 0 10px 30px rgba(2,6,23,0.6), 0 2px 6px rgba(212,175,55,0.06) inset;
+  box-shadow: 0 10px 40px rgba(2,6,23,0.7), 0 2px 6px rgba(212,175,55,0.06) inset;
   animation: float 6s ease-in-out infinite;
 }
 .photo-3d-frame .photo {
@@ -22,69 +28,261 @@ html { scroll-behavior: smooth; }
   height: 360px;
   border-radius: 12px;
   display: block;
-  transform: translateZ(40px);
   object-position: center;
 }
-
-/* subtle floating */
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
 }
-
-/* small responsive fixes */
 @media (max-width: 640px) {
-  .photo-3d-frame .photo { height: 320px; }
+  .photo-3d-wrapper { max-width: 80vw; }
+  .photo-3d-frame .photo { height: 300px; }
 }
 
-/* Skill and project card helpers */
-.skill-card {
-  background: linear-gradient(180deg, rgba(17,34,64,0.8), rgba(10,25,47,0.8));
-  padding: 18px;
-  border-radius: 12px;
-  text-align: center;
+/* ═══════════════════════════════════════════
+   HERO TECH TAGS
+═══════════════════════════════════════════ */
+.tech-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(212,175,55,0.08);
+  border: 1px solid rgba(212,175,55,0.18);
+  border-radius: 6px;
+  font-size: 11px;
   font-weight: 600;
-  color: #e6eef8;
-  box-shadow: 0 8px 20px rgba(2,6,23,0.6);
-}
-.project-card {
-  background: linear-gradient(180deg, rgba(10,25,47,0.8), rgba(17,34,64,0.8));
-  padding: 18px;
-  border-radius: 12px;
-  color: #e6eef8;
-  box-shadow: 0 8px 20px rgba(2,6,23,0.6);
+  color: #c9a227;
+  letter-spacing: 0.02em;
 }
 
-/* Mobile responsive contact section */
+/* ═══════════════════════════════════════════
+   ABOUT STAT CARDS
+═══════════════════════════════════════════ */
+.about-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(10,25,47,0.6);
+  border: 1px solid rgba(212,175,55,0.1);
+  border-radius: 10px;
+  padding: 14px 18px;
+}
+
+/* ═══════════════════════════════════════════
+   HIGHLIGHT CARDS (What I Build)
+═══════════════════════════════════════════ */
+.highlight-card {
+  background: rgba(17,34,64,0.6);
+  border: 1px solid rgba(212,175,55,0.08);
+  border-radius: 12px;
+  padding: 20px;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.highlight-card:hover {
+  border-color: rgba(212,175,55,0.25);
+  transform: translateY(-3px);
+}
+
+/* ═══════════════════════════════════════════
+   SKILL GROUP CARDS
+═══════════════════════════════════════════ */
+.skill-group-card {
+  background: rgba(10,25,47,0.7);
+  border: 1px solid rgba(212,175,55,0.08);
+  border-radius: 12px;
+  padding: 20px;
+  transition: border-color 0.25s;
+}
+.skill-group-card:hover {
+  border-color: rgba(212,175,55,0.2);
+}
+.skill-group-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #d4af37;
+}
+.skill-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(212,175,55,0.06);
+  border: 1px solid rgba(212,175,55,0.15);
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #b8cce4;
+  transition: background 0.2s, color 0.2s;
+}
+.skill-pill:hover {
+  background: rgba(212,175,55,0.12);
+  color: #d4af37;
+}
+
+/* ═══════════════════════════════════════════
+   PROJECT CARDS (Full-width)
+═══════════════════════════════════════════ */
+.project-card-full {
+  background: linear-gradient(135deg, rgba(17,34,64,0.9), rgba(10,25,47,0.95));
+  border: 1px solid rgba(212,175,55,0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.project-card-full:hover {
+  border-color: rgba(212,175,55,0.25);
+  box-shadow: 0 8px 40px rgba(2,6,23,0.5);
+}
+.project-card-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid rgba(212,175,55,0.07);
+}
+.project-card-body {
+  padding: 20px 24px 24px;
+}
+.project-badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  border: 1px solid;
+  letter-spacing: 0.02em;
+}
+.tech-pill {
+  display: inline-block;
+  padding: 3px 9px;
+  background: rgba(10,25,47,0.8);
+  border: 1px solid rgba(100,130,180,0.2);
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #8ea8c3;
+}
+.project-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #d4af37;
+  transition: background 0.2s, border-color 0.2s;
+}
+.project-link-btn:hover {
+  background: rgba(212,175,55,0.1);
+  border-color: rgba(212,175,55,0.5);
+}
+
+/* ═══════════════════════════════════════════
+   EDUCATION CARDS
+═══════════════════════════════════════════ */
+.edu-card {
+  background: rgba(17,34,64,0.6);
+  border: 1px solid rgba(212,175,55,0.08);
+  border-radius: 12px;
+  padding: 18px 20px;
+  transition: border-color 0.25s;
+}
+.edu-card:hover {
+  border-color: rgba(212,175,55,0.2);
+}
+.edu-status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.edu-status-current {
+  background: rgba(212,175,55,0.12);
+  color: #d4af37;
+  border: 1px solid rgba(212,175,55,0.3);
+}
+.edu-status-completed {
+  background: rgba(52,211,153,0.1);
+  color: #34d399;
+  border: 1px solid rgba(52,211,153,0.25);
+}
+.edu-status-inprogress {
+  background: rgba(96,165,250,0.1);
+  color: #60a5fa;
+  border: 1px solid rgba(96,165,250,0.25);
+}
+
+/* ═══════════════════════════════════════════
+   CONTACT SECTION
+═══════════════════════════════════════════ */
+.contact-info-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  background: rgba(17,34,64,0.5);
+  border: 1px solid rgba(212,175,55,0.07);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.contact-info-row:hover {
+  border-color: rgba(212,175,55,0.2);
+  background: rgba(17,34,64,0.8);
+}
+.contact-icon-wrap {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212,175,55,0.08);
+  border: 1px solid rgba(212,175,55,0.15);
+  border-radius: 8px;
+  color: #d4af37;
+  flex-shrink: 0;
+}
+.contact-input {
+  width: 100%;
+  background: rgba(17,34,64,0.6);
+  border: 1px solid rgba(212,175,55,0.12);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #e6eef8;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.contact-input::placeholder { color: #4a6080; }
+.contact-input:focus { border-color: rgba(212,175,55,0.4); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE HELPERS
+═══════════════════════════════════════════ */
 @media (max-width: 768px) {
-  #contact {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-  #contact > div {
-    max-width: 100%;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-  #contact > div > div[class*="grid"] {
-    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-    gap: 1rem;
-  }
-  #contact a.group {
-    padding: 1.25rem 1rem;
-    min-height: 4rem;
-  }
-  #contact svg.h-10,
-  #contact svg.w-10 {
-    width: 2rem !important;
-    height: 2rem !important;
-  }
-  #contact h4 {
-    font-size: 1.125rem;
-  }
-  #contact p {
-    font-size: 0.875rem;
-    line-height: 1.4;
-  }
+  .project-card-header,
+  .project-card-body { padding-left: 16px; padding-right: 16px; }
+}
+@media (max-width: 480px) {
+  .about-stat-card { flex-direction: column; text-align: center; }
+}
+
+/* Professional Strengths pills */
+.strength-pill {
+  display: inline-block;
+  padding: 5px 12px;
+  background: rgba(17,34,64,0.7);
+  border: 1px solid rgba(212,175,55,0.15);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #94a9bf;
+  transition: border-color 0.2s, color 0.2s;
+}
+.strength-pill:hover {
+  border-color: rgba(212,175,55,0.35);
+  color: #d4af37;
 }
