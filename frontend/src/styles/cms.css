@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --c-bg: 248 249 250;
+  --c-ink: 10 25 47;
+  --c-accent: 100 255 218;
+  --c-muted: 82 96 109;
+}
+
+@layer base {
+  body { @apply bg-canvas font-sans text-ink antialiased; }
+  :focus-visible { outline: 2px solid rgb(var(--c-ink)); outline-offset: 2px; border-radius: 4px; }
+  fieldset { min-width: 0; }
+  legend { padding: 0; }
+}
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply btn bg-accent text-ink ring-1 ring-ink/10 hover:brightness-95; }
+  .btn-secondary { @apply btn border border-ink/20 bg-white text-ink hover:border-ink; }
+  .btn-dark { @apply btn bg-ink text-white hover:opacity-90; }
+  .btn-danger { @apply btn bg-red-700 text-white hover:bg-red-800; }
+  .btn-danger-outline { @apply btn border border-red-300 bg-white text-red-800 hover:bg-red-50; }
+  .icon-btn { @apply inline-flex h-9 w-9 items-center justify-center rounded-lg text-ink/70 transition hover:bg-mist hover:text-ink disabled:opacity-30 disabled:hover:bg-transparent; }
+  .card { @apply rounded-2xl border border-line bg-white shadow-card; }
+  .card-hover { @apply transition hover:-translate-y-0.5 hover:shadow-lift; }
+  .input { @apply w-full rounded-lg border border-line bg-white px-3 py-2.5 text-sm text-ink placeholder:text-muted/60; }
+  .input[aria-invalid="true"] { @apply border-red-500; }
+  .skeleton { @apply animate-pulse rounded-xl bg-ink/10; }
+  .badge { @apply inline-flex shrink-0 items-center rounded-full px-2.5 py-1 text-xs font-semibold; }
+  .badge-live { @apply bg-emerald-100 text-emerald-900; }
+  .badge-draft { @apply bg-amber-100 text-amber-900; }
+  .nav-heading { @apply px-3 pb-1 pt-5 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted; }
+  .nav-item { @apply flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-ink/75 transition hover:bg-mist hover:text-ink; }
+  .nav-item[aria-current="page"] { @apply bg-ink text-white hover:bg-ink hover:text-white; }
+}

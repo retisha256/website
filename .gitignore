@@ -1,9 +1,14 @@
 venv/
+.venv/
 *.pyc
 __pycache__/
-db.sqlite3
-.env
 staticfiles/
+media/
+.env
+*.log
 .vscode/
 .idea/
-*.log
+*.sqlite3
+*.sqlite3.*
+node_modules/
+.sixth/

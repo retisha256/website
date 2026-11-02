@@ -1,0 +1,20 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>CMS | Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="{% static 'favicon.svg' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="{% static 'dist/cms.css' %}">
+</head>
+<body>
+  <div id="cms"><p class="p-8 text-sm" style="font-family:system-ui">Loading the CMS…</p></div>
+  <div id="toasts" class="pointer-events-none fixed bottom-4 right-4 z-50 flex max-w-sm flex-col gap-2" role="status" aria-live="polite"></div>
+  <noscript>The CMS needs JavaScript to run.</noscript>
+  <script src="{% static 'dist/cms.js' %}" defer></script>
+</body>
+</html>
