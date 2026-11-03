@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: portfolio
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --no-input && python manage.py migrate
+    startCommand: gunicorn portfolio_site.wsgi:application
+    healthCheckPath: /
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: portfolio-db
+          property: connectionString
+      # Set to your public URL (Render's or your custom domain) after the first deploy.
+      - key: SITE_URL
+        sync: false
+
+databases:
+  - name: portfolio-db
+    plan: free
