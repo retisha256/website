@@ -125,8 +125,9 @@ Create a PostgreSQL database (Render, Neon, Supabase, Railway…) and copy its c
 
 ### 3. Media storage (photo, CV, certificates)
 Hosts like Render have a temporary disk, so uploads would vanish on redeploy. Choose one:
-- **Persistent disk:** attach a disk (e.g. mounted at `/var/data`) and set `MEDIA_ROOT=/var/data/media`. Django serves `/media/` itself.
+- **Cloudinary (recommended for Render Free):** create a free account, copy its `CLOUDINARY_URL` into the host's environment, and set `USE_CLOUDINARY_MEDIA=True`. Cloudinary's free plan has usage limits; keep uploads within them.
 - **S3-compatible bucket (recommended):** create a public-read bucket (AWS S3, Cloudflare R2, Backblaze B2) and set `USE_S3_MEDIA=True`, `AWS_STORAGE_BUCKET_NAME`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and for non-AWS providers `AWS_S3_ENDPOINT_URL` / `AWS_S3_CUSTOM_DOMAIN`.
+- **Persistent disk:** attach a disk (e.g. mounted at `/var/data`) and set `MEDIA_ROOT=/var/data/media`. Django serves `/media/` itself; this requires a host plan that supports persistent disks.
 
 ### 4. Hosting the frontend separately (optional)
 Not needed. If you ever host the TypeScript frontend on another domain, set `CORS_ALLOWED_ORIGINS` and `DJANGO_CSRF_TRUSTED_ORIGINS` to that origin.

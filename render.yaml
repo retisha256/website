@@ -18,6 +18,10 @@ services:
       # Set to your public URL (Render's or your custom domain) after the first deploy.
       - key: SITE_URL
         sync: false
+      - key: USE_CLOUDINARY_MEDIA
+        value: "false"
+      - key: CLOUDINARY_URL
+        sync: false
       - key: RESEND_API_KEY
         sync: false
       - key: CONTACT_TO_EMAIL

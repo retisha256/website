@@ -24,6 +24,13 @@ def env_list(name: str, default: str = "") -> list[str]:
 
 
 DEBUG = env_bool("DJANGO_DEBUG", False)
+USE_CLOUDINARY_MEDIA = env_bool("USE_CLOUDINARY_MEDIA")
+USE_S3_MEDIA = env_bool("USE_S3_MEDIA")
+
+if USE_CLOUDINARY_MEDIA and USE_S3_MEDIA:
+    raise ImproperlyConfigured("Enable only one of USE_CLOUDINARY_MEDIA or USE_S3_MEDIA.")
+if USE_CLOUDINARY_MEDIA and not os.environ.get("CLOUDINARY_URL"):
+    raise ImproperlyConfigured("CLOUDINARY_URL is required when USE_CLOUDINARY_MEDIA=True.")
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "")
 if not SECRET_KEY:
@@ -65,6 +72,9 @@ INSTALLED_APPS = [
     "education",
     "testimonials",
 ]
+
+if USE_CLOUDINARY_MEDIA:
+    INSTALLED_APPS.extend(["cloudinary_storage", "cloudinary"])
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -135,8 +145,10 @@ STORAGES = {
     "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
 }
 
-# Optional S3-compatible media storage (AWS S3, Cloudflare R2, Backblaze B2...).
-if env_bool("USE_S3_MEDIA"):
+# Optional persistent media storage.
+if USE_CLOUDINARY_MEDIA:
+    STORAGES["default"] = {"BACKEND": "core.storage.PortfolioCloudinaryStorage"}
+elif USE_S3_MEDIA:
     STORAGES["default"] = {"BACKEND": "storages.backends.s3.S3Storage"}
     AWS_STORAGE_BUCKET_NAME = os.environ["AWS_STORAGE_BUCKET_NAME"]
     AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME") or None

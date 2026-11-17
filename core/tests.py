@@ -1,12 +1,15 @@
 import io
 import json
 import os
+import runpy
 import tempfile
+from pathlib import Path
 from unittest.mock import patch
 
 from django.conf import settings as django_settings
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
+from django.core.exceptions import ImproperlyConfigured
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.management import call_command
 from django.test import TestCase, override_settings
@@ -35,6 +38,47 @@ def png_bytes(size=(20, 20)):
     buf = io.BytesIO()
     Image.new("RGB", size, "teal").save(buf, "PNG")
     return buf.getvalue()
+
+
+class MediaStorageSettingsTests(TestCase):
+    settings_path = Path(__file__).resolve().parent.parent / "portfolio_site" / "settings.py"
+
+    def load_settings(self, **environment):
+        with patch.dict(os.environ, environment):
+            return runpy.run_path(str(self.settings_path))
+
+    def test_cloudinary_storage_requires_url(self):
+        with self.assertRaisesMessage(ImproperlyConfigured, "CLOUDINARY_URL is required"):
+            self.load_settings(
+                DJANGO_DEBUG="True",
+                DJANGO_SECRET_KEY="test-key",
+                USE_CLOUDINARY_MEDIA="True",
+                USE_S3_MEDIA="False",
+                CLOUDINARY_URL="",
+            )
+
+    def test_cloudinary_storage_is_selected_when_configured(self):
+        settings = self.load_settings(
+            DJANGO_DEBUG="True",
+            DJANGO_SECRET_KEY="test-key",
+            USE_CLOUDINARY_MEDIA="True",
+            USE_S3_MEDIA="False",
+            CLOUDINARY_URL="cloudinary://test:test@example",
+        )
+        self.assertEqual(
+            settings["STORAGES"]["default"]["BACKEND"],
+            "core.storage.PortfolioCloudinaryStorage",
+        )
+        self.assertIn("cloudinary_storage", settings["INSTALLED_APPS"])
+
+    def test_cloudinary_storage_uses_raw_resource_type_for_documents(self):
+        with patch.dict(os.environ, {"CLOUDINARY_URL": "cloudinary://test:test@example"}):
+            from .storage import PortfolioCloudinaryStorage
+
+        storage = PortfolioCloudinaryStorage()
+        self.assertEqual(storage._get_resource_type("documents/cv.pdf"), "raw")
+        self.assertEqual(storage._get_resource_type("branding/favicon.ico"), "raw")
+        self.assertEqual(storage._get_resource_type("projects/photo.webp"), "image")
 
 
 @override_settings(PASSWORD_HASHERS=["django.contrib.auth.hashers.MD5PasswordHasher"])  # fast tests only
