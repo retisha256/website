@@ -184,6 +184,7 @@ REST_FRAMEWORK = {
         "anon": os.environ.get("THROTTLE_ANON", "120/min"),
         "user": os.environ.get("THROTTLE_USER", "600/min"),
         "login": os.environ.get("THROTTLE_LOGIN", "5/min"),
+        "contact": os.environ.get("THROTTLE_CONTACT", "5/hour"),
         "upload": os.environ.get("THROTTLE_UPLOAD", "60/hour"),
     },
     "EXCEPTION_HANDLER": "core.exceptions.api_exception_handler",

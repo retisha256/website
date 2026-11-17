@@ -97,3 +97,21 @@ class ContactLinkSerializer(BaseModelSerializer):
     class Meta:
         model = ContactLink
         fields = "__all__"
+
+
+class ContactMessageSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=120)
+    email = serializers.EmailField(max_length=254)
+    subject = serializers.CharField(max_length=160)
+    message = serializers.CharField(max_length=5000)
+    website = serializers.CharField(max_length=200, allow_blank=True, required=False, write_only=True)
+
+    def validate_subject(self, value):
+        if "\r" in value or "\n" in value:
+            raise serializers.ValidationError("Subject must be a single line.")
+        return value
+
+    def validate_website(self, value):
+        if value.strip():
+            raise serializers.ValidationError("Unable to submit this message.")
+        return value

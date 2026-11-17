@@ -18,6 +18,12 @@ services:
       # Set to your public URL (Render's or your custom domain) after the first deploy.
       - key: SITE_URL
         sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: CONTACT_TO_EMAIL
+        value: retishanakiyemba202@gmail.com
+      - key: CONTACT_FROM_EMAIL
+        value: "Portfolio website <onboarding@resend.dev>"
 
 databases:
   - name: portfolio-db

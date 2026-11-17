@@ -18,8 +18,18 @@ from testimonials.models import Testimonial
 
 from .models import ContactLink, Profile, SiteSettings
 from .permissions import IsStaffUser
-from .serializers import ContactLinkSerializer, ProfileSerializer, SiteSettingsSerializer
-from .throttles import LoginThrottle
+from .contact_email import (
+    ContactEmailDeliveryError,
+    ContactEmailNotConfigured,
+    send_contact_email,
+)
+from .serializers import (
+    ContactLinkSerializer,
+    ContactMessageSerializer,
+    ProfileSerializer,
+    SiteSettingsSerializer,
+)
+from .throttles import ContactThrottle, LoginThrottle
 
 
 def _user_payload(user):
@@ -175,3 +185,35 @@ class PublicSiteView(APIView):
             "profile": _public(ProfileSerializer, profile),
             "links": [_public(ContactLinkSerializer, link, drop=("is_published",)) for link in links],
         })
+
+
+class ContactMessageView(APIView):
+    authentication_classes: list = []
+    permission_classes = [AllowAny]
+    throttle_classes = [ContactThrottle]
+
+    def post(self, request):
+        SessionAuthentication().enforce_csrf(request)
+        serializer = ContactMessageSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        message_data = {
+            key: value
+            for key, value in serializer.validated_data.items()
+            if key != "website"
+        }
+        try:
+            send_contact_email(**message_data)
+        except ContactEmailNotConfigured:
+            return Response(
+                {"detail": "The contact form is not configured yet. Please email directly."},
+                status=status.HTTP_503_SERVICE_UNAVAILABLE,
+            )
+        except ContactEmailDeliveryError:
+            return Response(
+                {"detail": "We couldn't send your message. Please try again or email directly."},
+                status=status.HTTP_502_BAD_GATEWAY,
+            )
+        return Response(
+            {"detail": "Thanks for your message. It has been sent."},
+            status=status.HTTP_200_OK,
+        )

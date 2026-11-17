@@ -118,8 +118,9 @@ Create a PostgreSQL database (Render, Neon, Supabase, Railway…) and copy its c
 ### 2. Backend + frontend (example: Render web service)
 - **Build command:** `pip install -r requirements.txt && python manage.py collectstatic --no-input && python manage.py migrate`
 - **Start command:** `gunicorn portfolio_site.wsgi:application`
-- **Environment variables** (see `.env.example`): `DJANGO_SECRET_KEY`, `DJANGO_DEBUG=False`, `DJANGO_ALLOWED_HOSTS`, `DJANGO_CSRF_TRUSTED_ORIGINS`, `SITE_URL`, `DATABASE_URL`, plus the media settings below.
-- After the first deploy, open a shell and run `python manage.py createsuperuser`, then `python manage.py seed_portfolio` (or enter content yourself in the CMS).
+- **Environment variables** (see `.env.example`): `DJANGO_SECRET_KEY`, `DJANGO_DEBUG=False`, `DJANGO_ALLOWED_HOSTS`, `DJANGO_CSRF_TRUSTED_ORIGINS`, `SITE_URL`, `DATABASE_URL`, `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, and `CONTACT_FROM_EMAIL`, plus the media settings below. Create a Resend API key and add it as `RESEND_API_KEY` in the host's environment settings. The default Resend onboarding sender can deliver only to the email address associated with your Resend account; use a verified sender domain for broader delivery.
+- **Initialize the database:** run `python manage.py seed_portfolio` and `python manage.py createsuperuser`. Render Free does not provide a service shell, so run these from your local project with `DATABASE_URL` set to the database's **External Database URL** and `DJANGO_DEBUG=True`. Keep the URL private and remove it from the shell environment afterward.
+- **Contact form:** create a [Resend](https://resend.com/) account and add its API key as `RESEND_API_KEY` in the Render service's environment. The default `onboarding@resend.dev` sender can deliver only to the email address associated with your Resend account. For other recipients, configure a sender address on a verified domain.
 - Check the config any time with `python manage.py check --deploy`.
 
 ### 3. Media storage (photo, CV, certificates)

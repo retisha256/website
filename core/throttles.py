@@ -5,6 +5,10 @@ class LoginThrottle(AnonRateThrottle):
     scope = "login"
 
 
+class ContactThrottle(AnonRateThrottle):
+    scope = "contact"
+
+
 class UploadThrottle(UserRateThrottle):
     """Limits file uploads only; ordinary JSON edits are not counted."""
 

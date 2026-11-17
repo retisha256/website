@@ -1,5 +1,8 @@
 import io
+import json
+import os
 import tempfile
+from unittest.mock import patch
 
 from django.conf import settings as django_settings
 from django.contrib.auth import get_user_model
@@ -18,6 +21,11 @@ from skills.models import Skill, SkillCategory
 from testimonials.models import Testimonial
 
 from .models import Profile, SiteSettings
+from .contact_email import (
+    ContactEmailDeliveryError,
+    ContactEmailNotConfigured,
+    send_contact_email,
+)
 
 User = get_user_model()
 PASSWORD = "Str0ng-Test-Pass!"
@@ -95,6 +103,120 @@ class PublicApiTests(ApiTestCase):
             response = getattr(self.admin, method)("/api/public/services/", {"title": "x"}, format="json")
             self.assertEqual(response.status_code, 405, method)
 
+
+class ContactMessageTests(ApiTestCase):
+    endpoint = "/api/public/contact/"
+    message = {
+        "name": "Ada Visitor",
+        "email": "ada@example.com",
+        "subject": "Portfolio enquiry",
+        "message": "I would like to discuss your services.",
+        "website": "",
+    }
+
+    @patch("core.api_views.send_contact_email")
+    def test_valid_message_is_sent_and_returns_confirmation(self, send_email):
+        response = self.anon.post(self.endpoint, self.message, format="json")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("sent", response.json()["detail"])
+        send_email.assert_called_once_with(
+            name="Ada Visitor",
+            email="ada@example.com",
+            subject="Portfolio enquiry",
+            message="I would like to discuss your services.",
+        )
+
+    @patch("core.api_views.send_contact_email")
+    def test_invalid_email_is_rejected(self, send_email):
+        response = self.anon.post(
+            self.endpoint, {**self.message, "email": "not-an-email"}, format="json"
+        )
+
+        self.assertEqual(response.status_code, 400)
+        send_email.assert_not_called()
+
+    @patch("core.api_views.send_contact_email")
+    def test_honeypot_submission_is_rejected(self, send_email):
+        response = self.anon.post(
+            self.endpoint, {**self.message, "website": "spam"}, format="json"
+        )
+
+        self.assertEqual(response.status_code, 400)
+        send_email.assert_not_called()
+
+    @patch("core.api_views.send_contact_email")
+    def test_csrf_token_allows_valid_submission(self, send_email):
+        client = APIClient(enforce_csrf_checks=True)
+        client.get("/api/auth/csrf/")
+        token = client.cookies["csrftoken"].value
+
+        response = client.post(
+            self.endpoint,
+            self.message,
+            format="json",
+            HTTP_X_CSRFTOKEN=token,
+        )
+
+        self.assertEqual(response.status_code, 200)
+        send_email.assert_called_once()
+
+    def test_missing_csrf_token_is_rejected(self):
+        client = APIClient(enforce_csrf_checks=True)
+
+        response = client.post(self.endpoint, self.message, format="json")
+
+        self.assertEqual(response.status_code, 403)
+
+    @patch("core.api_views.send_contact_email", side_effect=ContactEmailNotConfigured)
+    def test_missing_email_configuration_returns_service_unavailable(self, send_email):
+        response = self.anon.post(self.endpoint, self.message, format="json")
+
+        self.assertEqual(response.status_code, 503)
+        self.assertIn("not configured", response.json()["detail"])
+
+    @patch("core.api_views.send_contact_email", side_effect=ContactEmailDeliveryError)
+    def test_delivery_failure_returns_error_not_success(self, send_email):
+        response = self.anon.post(self.endpoint, self.message, format="json")
+
+        self.assertEqual(response.status_code, 502)
+        self.assertIn("couldn't send", response.json()["detail"])
+        send_email.assert_called_once()
+
+
+class ContactEmailTests(TestCase):
+    def test_resend_request_uses_fixed_recipient_and_reply_to(self):
+        with patch.dict(os.environ, {
+            "RESEND_API_KEY": "test-key",
+            "CONTACT_TO_EMAIL": "owner@example.com",
+            "CONTACT_FROM_EMAIL": "Portfolio <onboarding@resend.dev>",
+        }):
+            with patch("core.contact_email.urlopen") as urlopen:
+                urlopen.return_value.__enter__.return_value.status = 200
+                send_contact_email(
+                    name="Ada Visitor",
+                    email="ada@example.com",
+                    subject="Hello",
+                    message="A message",
+                )
+
+                request = urlopen.call_args.args[0]
+                payload = json.loads(request.data.decode("utf-8"))
+
+        self.assertEqual(request.get_header("Authorization"), "Bearer test-key")
+        self.assertEqual(payload["to"], ["owner@example.com"])
+        self.assertEqual(payload["reply_to"], "ada@example.com")
+        self.assertIn("Name: Ada Visitor", payload["text"])
+
+    def test_resend_requires_an_api_key(self):
+        with patch.dict(os.environ, {"RESEND_API_KEY": ""}):
+            with self.assertRaises(ContactEmailNotConfigured):
+                send_contact_email(
+                    name="Ada Visitor",
+                    email="ada@example.com",
+                    subject="Hello",
+                    message="A message",
+                )
 
 class PermissionTests(ApiTestCase):
     def test_anonymous_cannot_use_admin_api(self):

@@ -55,6 +55,7 @@ urlpatterns = [
     path("auth/me/", api_views.MeView.as_view(), name="auth-me"),
     path("auth/password/", api_views.ChangePasswordView.as_view(), name="auth-password"),
     path("public/site/", api_views.PublicSiteView.as_view(), name="public-site"),
+    path("public/contact/", api_views.ContactMessageView.as_view(), name="public-contact"),
     path("public/", include(public.urls)),
     path("admin/dashboard/", api_views.DashboardView.as_view(), name="admin-dashboard"),
     path("admin/profile/", AdminProfileView.as_view({"get": "retrieve", "put": "update", "patch": "partial_update"})),

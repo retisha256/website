@@ -27,11 +27,19 @@ function cached<T>(path: string): Promise<T> {
 }
 
 export const getSite = () => cached<SiteBundle>("/api/public/site/");
+export const getCsrf = () => api.get<{ csrfToken: string }>("/api/auth/csrf/");
 export const getServices = () => cached<Service[]>("/api/public/services/");
 export const getSkills = () => cached<SkillCategory[]>("/api/public/skills/");
 export const getExperience = () => cached<Experience[]>("/api/public/experience/");
 export const getEducation = () => cached<Education[]>("/api/public/education/");
 export const getTestimonials = () => cached<Testimonial[]>("/api/public/testimonials/");
+export const sendContactMessage = (data: {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  website: string;
+}) => api.post<{ detail: string }>("/api/public/contact/", data);
 export const getFacets = () => cached<ProjectFacets>("/api/public/projects/facets/");
 export const getFeaturedProjects = () => cached<ProjectCard[]>("/api/public/projects/?featured=true");
 export const getProject = (slug: string) => cached<Project>(`/api/public/projects/${encodeURIComponent(slug)}/`);
